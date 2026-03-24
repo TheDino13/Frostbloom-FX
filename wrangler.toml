@@ -18,3 +18,13 @@ invocation_logs = true
 enabled = false
 persist = true
 head_sampling_rate = 1
+
+[vars]
+STANDARD_DOMAIN_LIST = "frostbloom-fx.frostbloom.workers.dev"
+DIRECT_MEDIA_DOMAINS = "frostbloom-fx.frostbloom.workers.dev"
+VIDEO_TRANSCODE_DOMAIN_LIST = "frostbloom-fx.frostbloom.workers.dev"
+TEXT_ONLY_DOMAINS = "frostbloom-fx.frostbloom.workers.dev"
+INSTANT_VIEW_DOMAINS = "frostbloom-fx.frostbloom.workers.dev"
+GALLERY_DOMAINS = "frostbloom-fx.frostbloom.workers.dev"
+OLD_EMBED_DOMAINS = "frostbloom-fx.frostbloom.workers.dev"
+API_HOST_LIST = "api.fxtwitter.com,api-canary.fxtwitter.com"
