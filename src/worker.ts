@@ -43,13 +43,13 @@ export const app = new Hono<{
     if (Constants.API_HOST_LIST.includes(url.hostname)) {
       realm = 'api';
       console.log('API realm');
-    } else if (Constants.STANDARD_DOMAIN_LIST.includes(baseHostName)) {
+    } else if (Constants.STANDARD_DOMAIN_LIST.includes(baseHostName) || Constants.STANDARD_DOMAIN_LIST.includes(url.hostname)) {
       realm = 'twitter';
       console.log('Twitter realm');
-    } else if (Constants.STANDARD_BSKY_DOMAIN_LIST.includes(baseHostName)) {
+    } else if (Constants.STANDARD_BSKY_DOMAIN_LIST.includes(baseHostName) || Constants.STANDARD_BSKY_DOMAIN_LIST.includes(url.hostname)) {
       realm = 'bsky';
       console.log('Bluesky realm');
-    } else if (Constants.STANDARD_TIKTOK_DOMAIN_LIST.includes(baseHostName)) {
+    } else if (Constants.STANDARD_TIKTOK_DOMAIN_LIST.includes(baseHostName) || Constants.STANDARD_TIKTOK_DOMAIN_LIST.includes(url.hostname)) {
       realm = 'tiktok';
       console.log('TikTok realm');
     } else if (
