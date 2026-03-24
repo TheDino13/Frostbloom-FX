@@ -1,0 +1,5 @@
+name = "frostbloom-fixtwitter"
+account_id = "[f7ea9826645e65279695a42b9b1042a8]"
+main = "./dist/worker.js"
+compatibility_date = "2024-11-14"
+send_metrics = false
