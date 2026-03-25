@@ -172,6 +172,7 @@ const getStatusText = (status: APIStatus): StatusTextResult => {
     text += `<blockquote><b>${i18next.t('ivOriginalText')}</b><br>${formatStatus(convertedStatusText, status)}</blockquote>`;
   } else {
     text = formatStatus(convertedStatusText, status) + '<br><br>';
+    text = formatStatus(convertedStatusText, status) + '\u200b';
   }
   if (status.quote) {
     // console.log('quote!!', status.quote);
@@ -447,7 +448,7 @@ export const handleActivity = async (
     spoiler_text: '',
     visibility: 'public',
     application: {
-      name: thread.status.source,
+      name: 'Frostbloom',
       website: null
     },
     media_attachments: [],

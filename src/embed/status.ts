@@ -321,6 +321,8 @@ export const handleStatus = async (
      regular embed because it's not an API or direct media request */
 
   let authorText = getSocialProof(status) || Strings.DEFAULT_AUTHOR_TEXT;
+  // Removing social proof statistics
+  let authorText = Strings.DEFAULT_AUTHOR_TEXT;
   const engagementText = authorText.replace(/ {4}/g, ' ');
   const originalSiteName = getBranding(c).name;
   let siteName = originalSiteName;
@@ -480,6 +482,9 @@ export const handleStatus = async (
       if (instructions.siteName) {
         siteName = instructions.siteName;
       }
+      
+      // Force player card for videos so they play in Discord
+      status.embed_card = 'player';
     } else if (media?.mosaic) {
       if (userAgent.match(Constants.NATIVE_MULTI_IMAGE_UA_REGEX) && !flags.forceMosaic) {
         const photos = status.media?.photos || [];
@@ -640,7 +645,8 @@ export const handleStatus = async (
      
      A possible explanation for this weird behavior is due to the Medium template we are forced to use because Telegram IV is not an open platform
      and we have to pretend to be Medium in order to get working IV, but haven't figured if the template is causing issues.  */
-  let text = (useIV ? sanitizeText(newText).replace(/\n/g, '<br>') : sanitizeText(newText)) || '\u200b';
+  let text = (useIV ? sanitizeText(newText).replace(/\n/g, '<br>') : sanitizeText(newText));
+  text += '\u200b';
 
   // For article-only tweets, use article title and preview text
   let ogTitle = `${status.author.name} (@${status.author.screen_name})`;
@@ -656,14 +662,10 @@ export const handleStatus = async (
   /* Push basic headers relating to author, Tweet text, and site name */
   if (!flags.gallery) {
     headers.push(
-      `<meta property="og:title" content="${ogTitle}"/>`,
+      `<meta property="og:title" content="${status.author.name} (@${status.author.screen_name})"/>`,
       `<meta property="og:description" content="${text}"/>`
     );
-    if (!useActivity) {
-      headers.push(`<meta property="og:site_name" content="${siteName}"/>`);
-    } else {
-      headers.push(`<meta property="og:site_name" content="${originalSiteName}"/>`);
-    }
+    headers.push(`<meta property="og:site_name" content="Frostbloom"/>`);
   } else {
     if (isTelegram) {
       headers.push(
@@ -691,6 +693,7 @@ export const handleStatus = async (
     /* The additional oembed is pulled by Discord to enable improved embeds.
       Telegram does not use this. */
     let providerEngagementText = getSocialProof(status) ?? Strings.DEFAULT_AUTHOR_TEXT;
+    let providerEngagementText = Strings.DEFAULT_AUTHOR_TEXT;
     providerEngagementText = providerEngagementText.replace(/ {4}/g, '  ');
 
     /* Workaround to prevent us from accidentally doubling up the engagement text in both provider and author fields */
@@ -702,14 +705,7 @@ export const handleStatus = async (
     const mediaType = overrideMedia ?? status.media.videos?.[0]?.type;
     const branding = getBranding(c);
 
-    if (mediaType === 'gif') {
-      provider = i18next.t('gifIndicator', { brandingName: branding.name });
-    } else if (
-      status.embed_card === 'player' &&
-      providerEngagementText !== Strings.DEFAULT_AUTHOR_TEXT
-    ) {
-      provider = providerEngagementText;
-    }
+    provider = 'Frostbloom';
 
     const icons = getBranding(c).activityIcons;
     const iconSizes = ['svg', '64', '48', '32', '24', '16'];
