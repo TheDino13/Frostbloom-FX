@@ -320,7 +320,6 @@ export const handleStatus = async (
   /* At this point, we know we're going to have to create a
      regular embed because it's not an API or direct media request */
 
-  let authorText = getSocialProof(status) || Strings.DEFAULT_AUTHOR_TEXT;
   // Removing social proof statistics
   let authorText = Strings.DEFAULT_AUTHOR_TEXT;
   const engagementText = authorText.replace(/ {4}/g, ' ');
@@ -692,7 +691,6 @@ export const handleStatus = async (
   if (!flags.gallery) {
     /* The additional oembed is pulled by Discord to enable improved embeds.
       Telegram does not use this. */
-    let providerEngagementText = getSocialProof(status) ?? Strings.DEFAULT_AUTHOR_TEXT;
     let providerEngagementText = Strings.DEFAULT_AUTHOR_TEXT;
     providerEngagementText = providerEngagementText.replace(/ {4}/g, '  ');
 

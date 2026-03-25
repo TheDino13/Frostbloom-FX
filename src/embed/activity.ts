@@ -457,7 +457,6 @@ export const handleActivity = async (
       display_name: '\u200b',
       username: '\u200b',
       acct: '\u200b',
-      avatar: '', // Аватар можно оставить пустым или поставить ссылку на прозрачный пиксель
       url: thread.status.url,
       uri: thread.status.url,
       created_at: thread.status.author.joined
