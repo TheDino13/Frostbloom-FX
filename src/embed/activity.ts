@@ -427,7 +427,8 @@ export const handleActivity = async (
   if (!thread.status) {
     return returnError(c, Strings.ERROR_API_FAIL);
   }
-
+  // @ts-ignore
+  console.log('status.text:', thread.status.text);
   // Get status text and article media
   const statusResult = getStatusText(thread.status);
   const statusText = statusResult.text;
