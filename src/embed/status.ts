@@ -734,8 +734,8 @@ export const handleStatus = async (
             ? status.author.name
             : encodeURIComponent(truncateWithEllipsis(authorText, 255)),
           status: encodeURIComponent(statusId),
-          author: encodeURIComponent(status.author.screen_name || ''),
-          name: status.author.name || '',
+          author: '',
+          name: '',
           provider: provider ? `&provider=${encodeURIComponent(provider)}` : ''
         }
       )
