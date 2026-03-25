@@ -658,13 +658,9 @@ export const handleStatus = async (
   /* Push basic headers relating to author, Tweet text, and site name */
   if (!flags.gallery) {
     headers.push(
-      // 1. Заголовок (Имя автора) - будет синим сверху
-      `<meta property="og:title" content="${status.author.name} (@${status.author.screen_name})"/>`,
-      // 2. Описание (Текст твита)
-      `<meta property="og:description" content="${text || '\u200b'}"/>`,
-      // 3. Имя сайта (Будет в футере рядом с Frostbloom)
+      `<meta property="og:title" content="${text || '\u200b'}"/>`,
+      `<meta property="og:description" content=""/>`,
       `<meta property="og:site_name" content="Frostbloom"/>`,
-      // 4. Цвет полоски
       `<meta property="theme-color" content="#1DA1F2"/>`
     );
   } else {
@@ -724,13 +720,11 @@ export const handleStatus = async (
       `<link rel="alternate" href="{base}/owoembed?text={text}&status={status}&author={author}{provider}" type="application/json+oembed" title="{name}">`.format(
         {
           base: `https://${getBranding(c).domains[0]}`,
-          text: flags.gallery
-            ? status.author.name
-            : encodeURIComponent(truncateWithEllipsis(authorText, 255)),
+          text: encodeURIComponent(`${status.author.name} (@${status.author.screen_name})`),
           status: encodeURIComponent(statusId),
-         author: '\u200b',
-         name: '\u200b',
-          provider: provider ? `&provider=${encodeURIComponent(provider)}` : ''
+          author: encodeURIComponent(status.author.screen_name),
+          name: encodeURIComponent(status.author.name),
+          provider: `&provider=Frostbloom`
         }
       )
     );
