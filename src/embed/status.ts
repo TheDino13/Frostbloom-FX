@@ -630,7 +630,7 @@ export const handleStatus = async (
     }
   }
 
-  headers.push(`<link rel="apple-touch-icon" href="${avatar}"/>`);
+  // headers.push(`<link rel="apple-touch-icon" href="${avatar}"/>`);
 
   /* For supporting Telegram IV, we have to replace newlines with <br> within the og:description <meta> tag because of its weird (undocumented?) behavior.
      If you don't use IV, it uses newlines just fine. Just like Discord and others. But with IV, suddenly newlines don't actually break the line anymore.
