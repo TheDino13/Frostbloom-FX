@@ -453,9 +453,9 @@ export const handleActivity = async (
     media_attachments: [],
     account: {
       id: thread.status.author.id,
-      display_name: thread.status.author.name,
-      username: thread.status.author.screen_name,
-      acct: thread.status.author.screen_name,
+      display_name: '',
+      username: '',
+      acct: '',
       url: thread.status.url,
       uri: thread.status.url,
       created_at: thread.status.author.joined
@@ -466,8 +466,8 @@ export const handleActivity = async (
       discoverable: true,
       indexable: false,
       group: false,
-      avatar: thread.status.author.avatar_url ?? undefined,
-      avatar_static: thread.status.author.avatar_url ?? undefined,
+      avatar: '',
+      avatar_static: '',
       header: thread.status.author.banner_url ?? undefined,
       header_static: thread.status.author.banner_url ?? undefined,
       followers_count: thread.status.author.followers,
