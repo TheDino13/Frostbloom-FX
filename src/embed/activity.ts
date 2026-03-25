@@ -447,10 +447,8 @@ export const handleActivity = async (
     content: statusText,
     spoiler_text: '',
     visibility: 'public',
-    application: {
-      name: 'Frostbloom',
-      website: null
-    },
+    // @ts-ignore
+    application: null,
     media_attachments: [],
     account: {
       id: thread.status.author.id,
