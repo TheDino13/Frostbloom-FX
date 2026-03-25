@@ -352,10 +352,6 @@ export const handleStatus = async (
   }
 
   if (!flags.gallery) {
-    headers.push(`<meta property="theme-color" content="${getBranding(c).color}"/>`);
-    headers.push(
-      `<meta property="twitter:title" content="${status.author.name} (@${status.author.screen_name})"/>`
-    );
   }
 
   /* This little thing ensures if by some miracle our embed is loaded in a browser,
@@ -654,17 +650,24 @@ export const handleStatus = async (
     text = sanitizeText(twitterStatus.article.preview_text);
   }
 
-  const useCard = status.embed_card === 'tweet' ? status.quote?.embed_card : status.embed_card;
+  // ОБЯЗАТЕЛЬНО: Проверь, чтобы для видео всегда был 'player'
+  // Используем проверку на наличие видео в media.videos
+  const useCard = status.media?.videos && status.media.videos.length > 0 ? 'player' : 'summary_large_image';
 
   headers.push(`<meta property="twitter:card" content="${useCard}"/>`);
 
   /* Push basic headers relating to author, Tweet text, and site name */
   if (!flags.gallery) {
     headers.push(
+      // 1. Заголовок (Имя автора) - будет синим сверху
       `<meta property="og:title" content="${status.author.name} (@${status.author.screen_name})"/>`,
-      `<meta property="og:description" content="${text}"/>`
+      // 2. Описание (Текст твита)
+      `<meta property="og:description" content="${text || '\u200b'}"/>`,
+      // 3. Имя сайта (Будет в футере рядом с Frostbloom)
+      `<meta property="og:site_name" content="Frostbloom"/>`,
+      // 4. Цвет полоски
+      `<meta property="theme-color" content="#1DA1F2"/>`
     );
-    headers.push(`<meta property="og:site_name" content="Frostbloom"/>`);
   } else {
     if (isTelegram) {
       headers.push(

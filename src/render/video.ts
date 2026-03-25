@@ -104,19 +104,17 @@ export const renderVideo = (
 
   /* Push the raw video-related headers */
   instructions.addHeaders = [
-    `<meta property="twitter:player:height" content="${video.height * sizeMultiplier}"/>`,
-    `<meta property="twitter:player:width" content="${video.width * sizeMultiplier}"/>`,
-    `<meta property="twitter:player:stream" content="${url}"/>`,
-    `<meta property="twitter:player:stream:content_type" content="${video.format}"/>`,
     `<meta property="og:video" content="${url}"/>`,
     `<meta property="og:video:secure_url" content="${url}"/>`,
-    `<meta property="og:video:height" content="${video.height * sizeMultiplier}"/>`,
-    `<meta property="og:video:width" content="${video.width * sizeMultiplier}"/>`,
-    `<meta property="og:type" content="video.other"/>`,
-    `<meta property="og:video:type" content="${video.format}"/>`,
-    `<meta property="og:image" content="${video.thumbnail_url}"/>`,
-    `<meta property="twitter:image" content="0"/>`
+    `<meta property="og:video:type" content="${video.format || 'video/mp4'}"/>`,
+    `<meta property="og:video:width" content="${video.width}"/>`,
+    `<meta property="og:video:height" content="${video.height}"/>`,
+    `<meta property="twitter:card" content="player"/>`,
+    `<meta property="twitter:player" content="${url}"/>`
   ];
+
+  // А вот дату (published_time) тут можно и нужно закомментировать
+  // headers.push(`<meta property="article:published_time" content="${status.created_at}"/>`);
 
   return instructions;
 };
