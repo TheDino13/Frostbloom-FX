@@ -658,9 +658,13 @@ export const handleStatus = async (
   /* Push basic headers relating to author, Tweet text, and site name */
   if (!flags.gallery) {
     headers.push(
-      `<meta property="og:title" content="${text || '\u200b'}"/>`,
-      `<meta property="og:description" content=""/>`,
+
+      `<meta property="og:title" content="${status.author.name} (@${status.author.screen_name})"/>`,
+
+      `<meta property="og:description" content="${text || '\u200b'}"/>`,
+
       `<meta property="og:site_name" content="Frostbloom"/>`,
+
       `<meta property="theme-color" content="#1DA1F2"/>`
     );
   } else {
@@ -720,7 +724,7 @@ export const handleStatus = async (
       `<link rel="alternate" href="{base}/owoembed?text={text}&status={status}&author={author}{provider}" type="application/json+oembed" title="{name}">`.format(
         {
           base: `https://${getBranding(c).domains[0]}`,
-          text: encodeURIComponent(`${status.author.name} (@${status.author.screen_name})`),
+          text: encodeURIComponent('\u200b'),
           status: encodeURIComponent(statusId),
           author: encodeURIComponent(status.author.screen_name),
           name: encodeURIComponent(status.author.name),
