@@ -128,7 +128,7 @@ export const handleStatus = async (
   ) {
     useActivity = true;
   }
-
+  useActivity = false;
   if (provider === DataProvider.Twitter) {
     thread = await constructTwitterThread(
       statusId,
