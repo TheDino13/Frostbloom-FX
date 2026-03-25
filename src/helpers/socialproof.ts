@@ -4,14 +4,13 @@ import { APIStatus, APITikTokStatus, APITwitterStatus } from '../types/types';
 import { formatNumber } from './utils';
 
 export const getSocialProof = (status: APIStatus): string | null => {
-   return null;
+   return ''; // Пустая строка вместо null
 };
 
 export const getActivitySocialProof = (status: APIStatus): string | null => {
-  return null;
+  return ''; 
 };
 
-/* The embed "author" text we populate with replies, reposts, and likes unless it's a video */
 export const getSocialTextIV = (status: APITwitterStatus): string | null => {
-  return null;
+  return '';
 };
