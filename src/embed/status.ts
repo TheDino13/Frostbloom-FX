@@ -640,7 +640,7 @@ export const handleStatus = async (
      
      A possible explanation for this weird behavior is due to the Medium template we are forced to use because Telegram IV is not an open platform
      and we have to pretend to be Medium in order to get working IV, but haven't figured if the template is causing issues.  */
-  let text = useIV ? sanitizeText(newText).replace(/\n/g, '<br>') : sanitizeText(newText);
+  let text = (useIV ? sanitizeText(newText).replace(/\n/g, '<br>') : sanitizeText(newText)) || '\u200b';
 
   // For article-only tweets, use article title and preview text
   let ogTitle = `${status.author.name} (@${status.author.screen_name})`;
@@ -734,8 +734,8 @@ export const handleStatus = async (
             ? status.author.name
             : encodeURIComponent(truncateWithEllipsis(authorText, 255)),
           status: encodeURIComponent(statusId),
-          author: '',
-          name: '',
+         author: '\u200b',
+         name: '\u200b',
           provider: provider ? `&provider=${encodeURIComponent(provider)}` : ''
         }
       )
@@ -788,7 +788,7 @@ export const handleStatus = async (
       `<link href='{base}/users/{author}/statuses/{status}' rel='alternate' type='application/activity+json'>`.format(
         {
           base: `https://${base}`,
-          author: encodeURIComponent(status.author.screen_name || ''),
+          author: '%E2%80%8B',
           status: snowflake
         }
       )

@@ -437,7 +437,7 @@ export const handleActivity = async (
     id: statusId,
     url: thread.status.url,
     uri: thread.status.url,
-    created_at: new Date(thread.status.created_at).toISOString(),
+    created_at: '',
     edited_at: null,
     reblog: null,
     in_reply_to_id: thread.status.replying_to?.post,
@@ -453,9 +453,10 @@ export const handleActivity = async (
     media_attachments: [],
     account: {
       id: thread.status.author.id,
-      display_name: '',
-      username: '',
-      acct: '',
+      display_name: '\u200b',
+      username: '\u200b',
+      acct: '\u200b',
+      avatar: '', // Аватар можно оставить пустым или поставить ссылку на прозрачный пиксель
       url: thread.status.url,
       uri: thread.status.url,
       created_at: thread.status.author.joined
