@@ -3,7 +3,7 @@
     {
       "name": "Frostbloom",
       "default": true,
-      "domains": ["frostbloom-fx.frostbloom.workers.dev"],
+      "domains": ["frostbloom.com", "frostbloom-fx.frostbloom.workers.dev"],
       "provider": "twitter"
     }
   ]

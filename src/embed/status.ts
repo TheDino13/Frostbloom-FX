@@ -713,13 +713,11 @@ export const handleStatus = async (
 
     for (const size of iconSizes) {
       let icon = icons?.[size];
-      // Use default icon if size 32 is not available
       if (size === '32' && !icon) {
         icon = icons?.['default'];
       }
-      const iconType = size === 'svg' ? 'image/svg+xml' : 'image/png';
       if (icon) {
-        headers.push(`<link href='${icon}' rel='icon' sizes='${size}x${size}' type='${iconType}'>`);
+        headers.push(`<link href='${icon}' rel='icon' ...>`);
       }
     }
 
