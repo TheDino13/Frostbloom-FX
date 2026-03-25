@@ -3,7 +3,7 @@ export const Constants = {
   STANDARD_DOMAIN_LIST: ['frostbloom-fx.frostbloom.workers.dev'],
   STANDARD_BSKY_DOMAIN_LIST: [],
   STANDARD_TIKTOK_DOMAIN_LIST: [],
-  DIRECT_MEDIA_DOMAINS: [],
+  DIRECT_MEDIA_DOMAINS: ['frostbloom-fx.frostbloom.workers.dev'],
   TEXT_ONLY_DOMAINS: [],
   INSTANT_VIEW_DOMAINS: [],
   GALLERY_DOMAINS: [],

@@ -52,9 +52,19 @@ export const renderPhoto = (
     ];
   } else {
     photo = photo as APIPhoto;
+
+    let url = photo.url;
+
+    if (
+      experimentCheck(Experiment.VIDEO_REDIRECT_WORKAROUND, !!Constants.API_HOST_LIST) &&
+      (userAgent?.includes('Discordbot') || userAgent?.includes('TelegramBot'))
+    ) {
+      url = `https://${Constants.API_HOST_LIST[0]}/2/go?url=${encodeURIComponent(url)}`;
+    }
+
     instructions.addHeaders = [
-      `<meta property="twitter:image" content="${photo.url}"/>`,
-      `<meta property="og:image" content="${photo.url}"/>`,
+      `<meta property="twitter:image" content="${url}"/>`,
+      `<meta property="og:image" content="${url}"/>`,
       `<meta property="twitter:image:width" content="${photo.width}"/>`,
       `<meta property="twitter:image:height" content="${photo.height}"/>`,
       `<meta property="og:image:width" content="${photo.width}"/>`,

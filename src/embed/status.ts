@@ -96,6 +96,9 @@ export const handleStatus = async (
 
   const isTelegram = (userAgent || '').indexOf('TelegramBot') > -1;
   const isDiscord = (userAgent || '').indexOf('Discordbot') > -1;
+  if (isDiscord) {
+    useActivity = false;
+  }
 
   let fetchWithThreads = false;
 
@@ -116,7 +119,9 @@ export const handleStatus = async (
 
   let useActivity = false;
 
-  if (
+  if (isDiscord) {
+    useActivity = false;
+  } else if (
     experimentCheck(
       Experiment.ACTIVITY_EMBED,
       c.req.header('user-agent')?.includes('Discordbot')
@@ -128,7 +133,6 @@ export const handleStatus = async (
   ) {
     useActivity = true;
   }
-  useActivity = false;
   if (provider === DataProvider.Twitter) {
     thread = await constructTwitterThread(
       statusId,
