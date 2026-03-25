@@ -333,7 +333,10 @@ export const handleStatus = async (
   }
 
   let newText = status.text;
-
+  if (api.tweet?.quote) {
+    const quoteText = handleQuote(api.tweet.quote);
+    newText += `\n${quoteText}`;
+}
   /* Base headers included in all responses */
   const headers = [];
 
@@ -584,10 +587,6 @@ export const handleStatus = async (
   }
 
   /* This Tweet quotes another Tweet, so we'll render the other Tweet where possible */
-  if (api.tweet?.quote) {
-    const quoteText = handleQuote(api.tweet.quote);
-    newText += `\n${quoteText}`;
-  }
 
   const avatar = status.author.avatar_url;
   const twitterStatus = status as APITwitterStatus;
